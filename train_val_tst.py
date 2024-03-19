@@ -227,7 +227,7 @@ if __name__ == "__main__":
             mode = random.choice([0,1,2,3])
             
             volume_batch, label_batch = image,label#sampled_batch['image'], sampled_batch['label']
-            label_batch=rotate(label_batch,mode)
+
             Dtarget = torch.tensor([1,1,1,1,0,0,0,0]).cuda()
             #Dtarget = torch.tensor([1,1,0,0]).cuda()
             model.train()
@@ -240,10 +240,10 @@ if __name__ == "__main__":
 
             noise = torch.clamp(torch.randn_like(unlabeled_volume_batch) * 0.1, -0.2, 0.2)
             ema_inputs = unlabeled_volume_batch + noise
-            ema_inputs=rotate(ema_inputs,mode)
+
             
             outputs = model(volume_batch)
-            outputs=rotate(outputs,mode)
+
             #outputs_soft = torch.softmax(outputs, dim=1)
             with torch.no_grad():
                 ema_output = ema_model(ema_inputs)
@@ -281,7 +281,7 @@ if __name__ == "__main__":
             D.train()
             with torch.no_grad():
                 outputs = model(volume_batch)
-                outputs=rotate(outputs,mode)
+
             #label_batch=torch.unsqueeze(label_batch,1)
             #outputs=torch.cat([label_batch[0:3],outputs],dim=0)
             #volume_b=torch.cat([volume_batch[0:3],volume_batch],dim=0)
