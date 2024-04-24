@@ -264,7 +264,7 @@ class GUNET(nn.Module):
         self.downsample2 = downsamplS(nmlist[1],nmlist[2])
         self.downsample3 = downsamplS(nmlist[2],nmlist[3])
         self.downsample4 = downsamplS(nmlist[3],nmlist[4])
-        self.downsample5 = downsample(nmlist[4],nmlist[5])
+        self.downsample5 = downsamplS(nmlist[4],nmlist[5])
         
         self.upsample0 = upsample(nmlist[5]+nmlist[4],nmlist[4],bilinear)#+nmlist[4]
         self.upsample1 = upsample(nmlist[4]+nmlist[3],nmlist[3],bilinear)#+nmlist[3]
