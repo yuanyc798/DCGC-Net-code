@@ -254,7 +254,7 @@ class output_conv(nn.Module):
 
 class GUNET(nn.Module):
     def __init__(self,n_channels,n_classes,bilinear = True):
-        super(DCUNET,self).__init__()
+        super(GUNET,self).__init__()
         self.n_channels = n_channels
         self.n_classes = n_classes
         self.bilinear = bilinear
@@ -278,11 +278,7 @@ class GUNET(nn.Module):
         self.spation3=Spation(nmlist[1])
         self.spation4=Spation(nmlist[0])
         
-        self.CAM=CAMBlock(128)
-        self.PAM=PAMBlock(256)
-        self.RAB=RAB(256,256)
         self.squt=Squdiat(nmlist[5],nmlist[5])
-        
         self.outconv = output_conv(nmlist[0],n_classes)
     def forward(self,x):
         x1 = self.init(x)
